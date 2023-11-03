@@ -1,6 +1,7 @@
 /* sidebar please take only 20% screen */
 .sidebar {
   flex: 0.2;
+  text-decoration: none;
 }
 
 .sidebar > hr {

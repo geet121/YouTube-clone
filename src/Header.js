@@ -7,11 +7,21 @@ import AppsIcon from "@mui/icons-material/Apps";
 import NotificationIcon from "@mui/icons-material/Notifications";
 import Avatar from "@mui/material/Avatar";
 import { Link } from "react-router-dom";
-import MyImage from "./MyImage.jpeg";
+// import { useHistory } from "react-router-dom";
+//In react-router-dom v6 useHistory() is replaced by useNavigate().
 
-//es7 snippets (Go download as an extension on VSC)
+import { useNavigate } from "react-router-dom";
+
 function Header() {
   const [inputSearch, setInputSearch] = useState("");
+
+  let navigate = useNavigate();
+  const keyPressHandler = (e) => {
+    if (e.key === "Enter") {
+      // alert("You pressed enter!");
+      navigate(`/search/${inputSearch}`);
+    }
+  };
 
   return (
     <div className="header">
@@ -28,6 +38,7 @@ function Header() {
       <div className="header__input">
         <input
           onChange={(e) => setInputSearch(e.target.value)}
+          onKeyDown={keyPressHandler}
           value={inputSearch}
           placeholder="Search"
           type="text"
@@ -41,7 +52,7 @@ function Header() {
         <VideoCallIcon className="header__icon" />
         <AppsIcon className="header__icon" />
         <NotificationIcon className="header__icon" />
-        <Avatar alt="Geetika" />
+        <Avatar alt="" />
       </div>
     </div>
   );
